@@ -1,0 +1,57 @@
+{
+	"info": {
+		"_postman_id": "f763d724-7365-4547-854f-a76116803ddc",
+		"name": "Serverless",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Deploy Package",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "deploymentPackage",
+							"type": "file",
+							"src": "/D:/Programming/nodejs/serverless/test/output.zip"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/deploy",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"deploy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Run",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/run",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"run"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
