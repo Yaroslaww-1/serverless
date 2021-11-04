@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "helloWorld": {
+      "handler": "./input.js"
+    }
+  }
+}

@@ -33,7 +33,8 @@ class BundleCommand {
   _appendFunctionsToArchive(archive, config) {
     config.functions.forEach(f => {
       const functionHandlerPath = path.join(this._bundlerRootDirPath, this._configDirPath, f.handler);
-      archive.file(functionHandlerPath, { name: `${f.name}.js` });
+      const { name, ext } = path.parse(functionHandlerPath);
+      archive.file(functionHandlerPath, { name: `${name}${ext}` });
     });
   }
 
