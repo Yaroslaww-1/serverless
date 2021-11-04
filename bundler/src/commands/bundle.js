@@ -14,10 +14,6 @@ class BundleCommand {
       zlib: { level: 9 } // Sets the compression level.
     });
 
-    output.on('end', function() {
-      console.log('done');
-    });
-
     archive.pipe(output);
 
     this._appendFunctionsToArchive(configPath, config, archive);
