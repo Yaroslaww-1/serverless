@@ -1,22 +1,37 @@
+const path = require("path");
+const fs = require("fs");
+
 const { Function } = require("./function");
 
 class Config {
   _functions;
+  _path;
+  _dir;
 
-  constructor(config, configDirPath) {
-    this._functions = this._parseFunctions(config.functions, configDirPath);
+  constructor({ configPath }) {
+    this._path = configPath;
+    this._dir = path.normalize(path.join(configPath, '..'));
+
+    const configJson = fs.readFileSync(configPath);
+    const config = JSON.parse(configJson);
+
+    this._functions = this._parseFunctions(config.functions);
   }
 
-  _parseFunctions(configFunctions, configDirPath) {
-    return Object.keys(configFunctions).map(functionName => new Function({
-      handler: configFunctions[functionName].handler,
+  _parseFunctions(configFunctions) {
+    const functionsNames = Object.keys(configFunctions);
+    return functionsNames.map(functionName => new Function({
+      handlerPath: path.join(this._dir, configFunctions[functionName].handler),
       name: functionName,
-      configDirPath,
     }));
   }
 
   get functions() {
     return this._functions;
+  }
+
+  get path() {
+    return this._path;
   }
 }
 

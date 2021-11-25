@@ -1,18 +1,18 @@
 const fs = require("fs");
 const path = require("path");
 class Function {
-  _handler;
+  _handlerPath;
   _name;
   _jsContent;
 
-  constructor({ name, handler, configDirPath }) {
+  constructor({ name, handlerPath }) {
     this._name = name;
-    this._handler = handler;
-    this._jsContent = fs.readFileSync(path.join(configDirPath, handler));
+    this._handlerPath = handlerPath;
+    this._jsContent = fs.readFileSync(handlerPath);
   }
 
-  get handler() {
-    return this._handler;
+  get handlerPath() {
+    return this._handlerPath;
   }
 
   get name() {
