@@ -11,13 +11,20 @@ class RunnerApiHelperClass {
 
   async deploy({ appName, packagePath }) {
     const form = new FormData();
-    const {size} = fs.statSync(packagePath);
-    const deploymentPackage = fs.readFileSync(packagePath);
-    form.append('deploymentPackage', deploymentPackage);
+    form.append('deploymentPackage', fs.readFileSync(packagePath));
     form.append('appName', appName);
+
     const response = await fetch(`${this._apiUrl}/deploy`, {
       method: 'POST',
       body: form
+    });
+    const data = await response.json();
+    return data;
+  }
+
+  async run({ appName }) {
+    const response = await fetch(`${this._apiUrl}/run/${appName}`, {
+      method: 'POST',
     });
     const data = await response.json();
     return data;

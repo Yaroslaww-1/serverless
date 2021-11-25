@@ -5,7 +5,10 @@ class VMService {
     const vm = new NodeVM({
       require: {
         external: true
-      }
+      },
+      sandbox: {
+        setTimeout: setTimeout
+      },
     });
 
     return vm;

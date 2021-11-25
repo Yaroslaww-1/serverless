@@ -14,7 +14,7 @@ app.post('/deploy', async (req, res) => {
   await command.handle(req, res)
 })
 
-app.post('/run', async (req, res) => {
+app.post('/run/:app', async (req, res) => {
   const command = new RunCommand();
   await command.handle(req, res)
 })

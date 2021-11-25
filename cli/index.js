@@ -4,6 +4,7 @@ const path = require("path");
 
 const { BundleCommand } = require("./src/commands/bundle.command");
 const { DeployCommand } = require("./src/commands/deploy.command");
+const { RunCommand } = require("./src/commands/run.command");
 
 const argv = yargs(hideBin(process.argv))
     .usage('Usage: $0 <command> [options]')
@@ -25,6 +26,18 @@ const argv = yargs(hideBin(process.argv))
           path.join(__dirname, argv.file),
           argv.app
         );
+      } catch (e) {
+        console.log(e);
+      }
+    })
+    .command('run', 'Run deployed code', async ({ argv }) => {
+      try {
+        const command = new RunCommand();
+        const result = await command.execute(
+          argv.app
+        );
+        console.log(result);
+        return result;
       } catch (e) {
         console.log(e);
       }

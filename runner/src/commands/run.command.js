@@ -12,9 +12,9 @@ class RunCommand {
 
   async handle(req, res) {
     try {
-      const userId = 1; //TODO: replace by actual user id
+      const appName = req.params.app;
       
-      const result = this._runnerService.run(userId);
+      const result = await this._runnerService.run({ appName });
 
       return OkResponse(res, { result });
     } catch (e) {

@@ -1,12 +1,21 @@
-# Serverless (lambda functions clone)
+# Serverless
 
-An application for running your serverless functions.
+An application for running your serverless functions. Inspired by AWS Lambda functions and Serverless framework.
+
+Basically this application consists of 3 modules:
+1. **config-parser** - shared parser for config files
+2. **cli** - contains CLI (bundle/deploy/run/...)
+3. **runner** - backend that runs code
+
+Core libraries:
+1. **yargs** for cli bootstrapping
+2. **express** as a backend framework
+3. **vm2** leverages code sandboxing
 
 ## Getting Started
 
 1. You can find test data in **test** folder.
-2. Run `node index.js --file=../test/config.json --output=../test/output.zip` to bundle all your code into single deployment archive in **bundler** folder.
-3. Run *runner server* using `npm run start` in **runner** folder.
-4. Upload your archive to server. Automatic deploying is still in progress, but you can use API (please refer to postman collection). 
-5. Call `/run` API to execute your deployed function.
+2. Run `node ./cli/index.js bundle --file=../test/config.json --output=../test/output.zip` to bundle all your code into single deployment archive in **test** folder. *Optional*
+3. Run `node ./cli/index.js deploy --file=../test/config.json --app=test` to bundle and deploy your code.
+4. Run `node ./cli/index.js run --app=test` to execute your code remotely.
 
