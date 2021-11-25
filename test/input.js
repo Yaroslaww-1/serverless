@@ -1,3 +1,4 @@
+// Wait one second and return array of numbers
 const queryDatabase = () => {
   return new Promise((resolve, reject) => {
     setInterval(() => {
