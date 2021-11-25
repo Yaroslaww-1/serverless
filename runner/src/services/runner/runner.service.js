@@ -1,23 +1,23 @@
 const path = require("path");
 const { ConfigParser } = require("config-parser");
 
-const { UserDataService } = require("../user/user-data.service");
+const { AppDataService } = require("../app-data/app-data.service");
 const { VMService } = require("../vm/vm.service");
 
 class RunnerService {
   _vmService;
-  _userDataService;
+  _appDataService;
   _configParser;
 
   constructor() {
     this._vmService = new VMService();
-    this._userDataService = new UserDataService();
+    this._appDataService = new AppDataService();
     this._configParser = new ConfigParser();
   }
 
-  run(userId) {
-    const userDataDirPath = this._userDataService.getUserDataDirPath(userId);
-    const configPath = path.join(userDataDirPath, "config.json");
+  run(appName) {
+    const appDataDirPath = this._appDataService.getAppDataDirPath(appName);
+    const configPath = path.join(appDataDirPath, "config.json");
     const config = this._configParser.parse(configPath);
 
     const vm = this._vmService.createNewVM();
