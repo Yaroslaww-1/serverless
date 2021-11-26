@@ -1,7 +1,8 @@
 {
-  "functions": {
-    "helloWorld": {
-      "handler": "./input.js"
-    }
+  "function": {
+    "handler": "./input.js"
+  },
+  "dependencies": {
+    "package.json": "./package.json"
   }
 }

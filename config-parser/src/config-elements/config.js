@@ -2,11 +2,14 @@ const path = require("path");
 const fs = require("fs");
 
 const { Function } = require("./function");
+const { Dependencies } = require("./dependencies");
 
 class Config {
-  _functions;
   _path;
   _dir;
+
+  _function;
+  _dependencies;
 
   constructor({ configPath }) {
     this._path = configPath;
@@ -15,19 +18,24 @@ class Config {
     const configJson = fs.readFileSync(configPath);
     const config = JSON.parse(configJson);
 
-    this._functions = this._parseFunctions(config.functions);
+    this._function = this._parseFunction(config.function);
+    // this._dependencies = this._parseDependencies(config.dependencies)
   }
 
-  _parseFunctions(configFunctions) {
-    const functionsNames = Object.keys(configFunctions);
-    return functionsNames.map(functionName => new Function({
-      handlerPath: path.join(this._dir, configFunctions[functionName].handler),
-      name: functionName,
-    }));
+  _parseFunction(configFunction) {
+    return new Function({
+      handlerPath: path.join(this._dir, configFunction.handler),
+    });
   }
 
-  get functions() {
-    return this._functions;
+  _parseDependencies(configDependencies) {
+    return new Dependencies({
+      packageJsonPath: path.join(this._dir, configDependencies['package.json'])
+    });
+  }
+
+  get function() {
+    return this._function;
   }
 
   get path() {

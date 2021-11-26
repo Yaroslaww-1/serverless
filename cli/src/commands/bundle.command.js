@@ -14,10 +14,7 @@ class BundleCommand {
     const archive = new ArchiveHelper({ outputPath });
     await archive
       .appendFileToArchive({ filePath: config.path, fileName: 'config.json' })
-      .appendFilesToArchive(config.functions.map(f => {
-        const { name: fileName } = path.parse(f.handlerPath);
-        return { filePath: f.handlerPath, fileName: `${fileName}.js` };
-      }))
+      .appendFileToArchive({ filePath: config.function.handlerPath, fileName: `${path.parse(f.handlerPath).name}.js` })
       .finalize();
   }
 }

@@ -1,4 +1,4 @@
-const { NodeVM } = require('vm2');
+const { NodeVM, VM } = require('vm2');
 
 class VMService {
   createNewVM() {
@@ -10,7 +10,7 @@ class VMService {
         setTimeout: setTimeout
       },
     });
-
+    
     return vm;
   }
 }

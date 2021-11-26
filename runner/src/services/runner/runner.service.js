@@ -21,9 +21,8 @@ class RunnerService {
     const config = this._configParser.parse(configPath);
 
     const vm = this._vmService.createNewVM();
-    const functionInSandbox = vm.run(config.functions[0].jsContent);
-    console.log(functionInSandbox);
-    return await functionInSandbox();
+    const functionExports = vm.run(config.function.jsContent);
+    return await functionExports.handler();
   }
 }
 

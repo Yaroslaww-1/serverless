@@ -7,6 +7,7 @@ const { ConfigParser } = require("config-parser");
 const { ArchiveHelper } = require("../helpers/archive.helper");
 const { PathHelper } = require("../helpers/path.helpers");
 const { RunnerApiHelper } = require('../helpers/runner-api.helper');
+const { WebpackHelper } = require('../helpers/webpack.helper');
 
 class DeployCommand {
   async execute(configPath, appName) {
@@ -17,13 +18,20 @@ class DeployCommand {
     PathHelper.createDirIfNotExists(outputFolder);
     const outputPath = PathHelper.appendToPath(outputFolder, 'output.zip');
 
+    const webpack = new WebpackHelper();
+    await webpack.run({
+      entryFilePath: config.function.handlerPath,
+      outputFolder,
+      outputFileName: 'function.js'
+    });
+
     const archive = new ArchiveHelper({ outputPath });
     await archive
       .appendFileToArchive({ filePath: config.path, fileName: 'config.json' })
-      .appendFilesToArchive(config.functions.map(f => {
-        const { name: fileName } = path.parse(f.handlerPath);
-        return { filePath: f.handlerPath, fileName: `${fileName}.js` };
-      }))
+      .appendFileToArchive({
+        filePath: path.join(outputFolder, 'function.js'),
+        fileName: `${path.parse(config.function.handlerPath).name}.js`
+      })
       .finalize();
 
     await RunnerApiHelper.deploy({ appName, packagePath: outputPath });
