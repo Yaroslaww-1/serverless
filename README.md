@@ -9,8 +9,9 @@ Basically this application consists of 3 modules:
 
 Core libraries:
 1. **yargs** for cli bootstrapping
-2. **express** as a backend framework
-3. **vm2** leverages code sandboxing
+2. **webpack** as a code bundler
+3. **express** as a backend framework
+4. **vm2** leverages code sandboxing
 
 ## Getting Started
 
