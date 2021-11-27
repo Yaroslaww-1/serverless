@@ -15,8 +15,9 @@ Core libraries:
 ## Getting Started
 
 1. You can find test data in **test** folder.
-2. Run `node ./cli/index.js bundle --file=../test/config.json --output=../test/output.zip` to bundle all your code into single deployment archive in **test** folder. *Optional*
-3. Start runner: `cd runner && npm run start`
-4. Run `node ./cli/index.js deploy --file=../test/config.json --app=test` to bundle and deploy your code.
-5. Run `node ./cli/index.js run --app=test` to execute your code remotely.
+2. Start runner: `cd runner && npm run start`
+3. Run `cd ./cli && node ./index.js bundle --file ../test/config.json --output ../test/output.zip` to bundle all your code into single deployment archive in **test** folder. *Optional*
+4. Run `cd ./cli && node ./index.js deploy --file ../test/config.json --app test` to bundle and deploy your code.
+5. Run `cd ./cli && node ./index.js run --app test` to execute your code remotely.
 
+[![deployment-video](https://drive.google.com/file/d/19irKQhsFZ-0QBuBquCQHYbolwp-BTRX7/view?usp=sharing)](https://drive.google.com/file/d/1nES1K0YQUiDwEq5Tqnws2uC2evEBuy_m/view?usp=sharing)

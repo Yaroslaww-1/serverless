@@ -1,6 +1,6 @@
 {
   "function": {
-    "handler": "./input.js"
+    "handler": "./function.js"
   },
   "dependencies": {
     "package.json": "./package.json"
