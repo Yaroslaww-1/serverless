@@ -20,4 +20,4 @@ Core libraries:
 4. Run `cd ./cli && node ./index.js deploy --file ../test/config.json --app test` to bundle and deploy your code.
 5. Run `cd ./cli && node ./index.js run --app test` to execute your code remotely.
 
-[![deployment-video](https://drive.google.com/file/d/19irKQhsFZ-0QBuBquCQHYbolwp-BTRX7/view?usp=sharing)](https://drive.google.com/file/d/1nES1K0YQUiDwEq5Tqnws2uC2evEBuy_m/view?usp=sharing)
+Video with deployment steps is available [here](https://youtu.be/PapHJpj_zuY)
