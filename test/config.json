@@ -1,8 +1,5 @@
 {
   "function": {
     "handler": "./function.js"
-  },
-  "dependencies": {
-    "package.json": "./package.json"
   }
 }

@@ -35,6 +35,8 @@ class DeployCommand {
       .finalize();
 
     await RunnerApiHelper.deploy({ appName, packagePath: outputPath });
+
+    console.log(`Files deployed successfully.`);
   }
 }
 
