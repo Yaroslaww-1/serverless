@@ -1,4 +1,5 @@
 const path = require("path");
+
 const { ConfigParser } = require("config-parser");
 
 const { AppDataService } = require("../app-data/app-data.service");
@@ -20,9 +21,9 @@ class RunnerService {
     const configPath = path.join(appDataDirPath, "config.json");
     const config = this._configParser.parse(configPath);
 
-    const vm = this._vmService.createNewVM();
-    const functionExports = vm.run(config.function.jsContent);
-    return await functionExports.handler();
+    const vm = this._vmService.createNewChildProcessVM();
+
+    return await vm.run(config.function.jsContent);
   }
 }
 

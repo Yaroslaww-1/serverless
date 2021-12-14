@@ -1,16 +1,8 @@
-const { NodeVM, VM } = require('vm2');
+const { ChildProcessVM } = require('./child-process-vm');
 
 class VMService {
-  createNewVM() {
-    const vm = new NodeVM({
-      require: {
-        external: true
-      },
-      sandbox: {
-        setTimeout: setTimeout
-      },
-    });
-    
+  createNewChildProcessVM() {
+    const vm = new ChildProcessVM();
     return vm;
   }
 }
