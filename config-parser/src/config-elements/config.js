@@ -2,14 +2,12 @@ const path = require("path");
 const fs = require("fs");
 
 const { Function } = require("./function");
-const { Dependencies } = require("./dependencies");
 
 class Config {
   _path;
   _dir;
 
   _function;
-  _dependencies;
 
   constructor({ configPath }) {
     this._path = configPath;
@@ -19,7 +17,6 @@ class Config {
     const config = JSON.parse(configJson);
 
     this._function = this._parseFunction(config.function);
-    // this._dependencies = this._parseDependencies(config.dependencies)
   }
 
   _parseFunction(configFunction) {
